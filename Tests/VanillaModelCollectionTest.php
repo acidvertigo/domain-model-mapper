@@ -16,8 +16,8 @@ class VanillaModelCollectionTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->collection = new ModelCollection();
-        $this->firstModel = new BaseDomainModel('id');
-        $this->secondModel = new BaseDomainModel('id');
+        $this->firstModel = new BaseDomainModel(['id']);
+        $this->secondModel = new BaseDomainModel(['id']);
         $this->collection[] = $this->firstModel;
         $this->collection[] = $this->secondModel;
     }
