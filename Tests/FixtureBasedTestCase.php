@@ -1,6 +1,6 @@
 <?php
 
-namespace DMM;
+namespace DMM\Test;
 
 class FixtureBasedTestCase extends \PHPUnit_Extensions_Database_TestCase
 {
