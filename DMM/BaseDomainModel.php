@@ -125,7 +125,7 @@ class BaseDomainModel
             $callback = function($this) use (&$methodName) {
                 return $this->$methodName();
             };
-            return callback($this);
+            return $callback($this);
         } else if (array_key_exists($fieldName, $this->data))
         {
             return $this->data[$fieldName];
