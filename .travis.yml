@@ -5,6 +5,7 @@ php:
 services:
   - mysql
 before_install:
+  - composer require --dev phpunit/dbunit
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
   - mysql -e 'USE test;'
   - mysql -e 'CREATE TABLE test.post ( 
