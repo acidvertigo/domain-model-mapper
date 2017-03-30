@@ -48,8 +48,7 @@ class DbAdapter
         {
             // Use a prepared statement if bindings are set
             $this->lastPdoStatement = $this->pdo->prepare($sql);
-            $executedOk = $this->lastPdoStatement->execute($bindings);
-            if (false === $executedOk)
+            if (false === $this->lastPdoStatement->execute($bindings))
             {
                 throw new \PDOException;
             }
@@ -123,7 +122,7 @@ class DbAdapter
      * @param array $bindings Parameter values to bind into query
      * @return array
      */
-    public function fetchAll($sql, $bindings=array())
+    public function fetchAll($sql, $bindings = [])
     {
         $statement = $this->runQuery($sql, $bindings);
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
@@ -170,7 +169,7 @@ class DbAdapter
      * @param array $whereBindings
      * @return int The number of rows affected
      */
-    public function update($tableName, $updateBindings, $whereCondition='', $whereBindings = [])
+    public function update($tableName, array $updateBindings, $whereCondition='', $whereBindings = [])
     {
         // Determine field assignments
         $assignments = [];
