@@ -2,6 +2,8 @@
 
 namespace DMM\Test;
 
+use DMM\BaseDomainModel;
+
 class MyDomainModel extends BaseDomainModel
 {
     // Only public so test can read these values
