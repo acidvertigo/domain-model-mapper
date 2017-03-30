@@ -31,8 +31,12 @@ class BaseDomainModel
     /**
      * @param array $identityKeys
      */
-    public function __construct(array $identityKeys)
+    public function __construct($identityKeys = [])
     {
+        if (!is_array($identityFields))
+        {
+            $identityKeys = [$identityKeys];
+        }
         $this->identityKeys = $identityKeys;
     }
     
