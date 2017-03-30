@@ -6,4 +6,4 @@ services:
   - mysql
 before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
-  - mysql -e 'CREATE TABLE post( post_id int NOT NULL auto_increment, title varchar(255), date_created datetime DEFAULT NULL, rating int int DEFAULT '0' NOT NULL, PRIMARY KEY (post_id)) CHARACTER SET utf8 COLLATE utf8_unicode_ci;'
+  - mysql -e 'CREATE TABLE post( post_id int NOT NULL auto_increment, title varchar(255), date_created datetime DEFAULT NULL, rating int DEFAULT '0' NOT NULL, PRIMARY KEY (post_id)) CHARACTER SET utf8 COLLATE utf8_unicode_ci;'
