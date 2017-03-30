@@ -2,8 +2,6 @@
 
 namespace DMM;
 
-require_once __DIR__.'/DbAdapter.php';
-
 /**
  * @package DMM
  *
