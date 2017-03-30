@@ -2,6 +2,8 @@
 
 namespace DMM\Test;
 
+use DMM\BaseDomainModel;
+
 class VanillaModelTest extends \PHPUnit_Framework_TestCase 
 {
     private $model;
