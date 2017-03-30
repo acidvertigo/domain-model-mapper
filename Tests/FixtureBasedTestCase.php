@@ -4,10 +4,10 @@ namespace DMM;
 
 class FixtureBasedTestCase extends \PHPUnit_Extensions_Database_TestCase
 {
-    protected $dbName = 'dmm_tests';
+    protected $dbName = 'test';
     protected $host = 'localhost';
-    protected $username = 'dmm-user';
-    protected $password = 'dmm-pw';
+    protected $username = 'travis';
+    protected $password = '';
 
     protected $pdo;
     protected $fixtureFile = 'seed.xml';
