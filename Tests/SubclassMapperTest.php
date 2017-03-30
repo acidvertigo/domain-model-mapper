@@ -2,12 +2,6 @@
 
 namespace DMM;
 
-require_once __DIR__.'/FixtureBasedTestCase.php';
-require_once __DIR__.'/../DMM/Mapper.php';
-require_once __DIR__.'/../DMM/ModelCollection.php';
-require_once __DIR__.'/fixtures/Post.php';
-require_once __DIR__.'/fixtures/PostCollection.php';
-
 class PostMapper extends Mapper
 {
     protected $modelClass = '\Post';
