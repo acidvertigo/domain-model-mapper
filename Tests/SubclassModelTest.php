@@ -24,7 +24,8 @@ class MyDomainModel extends BaseDomainModel
     // This should be called when setting "name"
     public function __setSalary($newSalary)
     {
-        if ($newSalary <= 0) {
+        if ($newSalary <= 0) 
+        {
             throw new \InvalidArgumentException;
         }
         $this->data['salary'] = $newSalary;
