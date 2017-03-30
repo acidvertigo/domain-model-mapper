@@ -36,7 +36,7 @@ class Mapper
     protected $modelCollectionClass = 'DMM\ModelCollection';
 
     /**
-     * @param PDO $pdo
+     * @param \PDO $pdo
      * @param string $tableName
      * @param array $identityFields
      */
@@ -131,9 +131,8 @@ class Mapper
             // adding.  This allows mappers to subclass the loadItem method and do
             // return null to prevent the model being loaded.
             $item = $this->loadItem($row);
-            if ($item) $collection[] = $item;
+            if ($item) yield $item;
         }
-        return $collection;
     }
 
     /**
