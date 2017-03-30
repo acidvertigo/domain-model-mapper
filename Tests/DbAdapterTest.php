@@ -2,6 +2,8 @@
 
 namespace DMM\Test;
 
+use DMM\DbAdapter;
+
 class DbAdapterTest extends FixtureBasedTestCase
 {
     public function setUp()
