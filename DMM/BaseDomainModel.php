@@ -81,7 +81,7 @@ class BaseDomainModel
      */
     public function __identity()
     {
-        $identity = array();
+        $identity = [];
         foreach ($this->identityKeys as $key)
         {
             if (array_key_exists($key, $this->data) && !empty($this->data[$key]))
