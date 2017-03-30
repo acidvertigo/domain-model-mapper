@@ -173,7 +173,7 @@ class BaseDomainModel
         
         if (count($this->identityKeys) !== count($identityValues))
         {
-            throw new Exception("Invalid number of identity values");
+            throw new \Exception("Invalid number of identity values");
         }
         
         $n = count($this->identityKeys);
