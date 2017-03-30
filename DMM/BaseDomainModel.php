@@ -115,22 +115,23 @@ class BaseDomainModel
      * a specific getter method with name __get$FieldName.
      *
      * @param string $fieldName
-     * @return mixed|false
+     * @return mixed|null
      */
     public function __get($fieldName)
     {
         $methodName = "__get$fieldName";
         if (method_exists($this, $methodName))
         {
-            return call_user_func(array($this, $methodName));
-        }
-        if (array_key_exists($fieldName, $this->data))
+            $callback = function($this) use (&$methodName) {
+                return $this->$methodName();
+            };
+            return callback($this);
+        } else if (array_key_exists($fieldName, $this->data))
         {
             return $this->data[$fieldName];
-        } else
-        {
-            return null;
         }
+  
+        return null;
     }
     
     /**
