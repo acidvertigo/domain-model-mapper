@@ -175,7 +175,7 @@ class BaseDomainModel
             throw new Exception("Invalid number of identity values");
         }
         
-        $n = $i<count($this->identityKeys);
+        $n = count($this->identityKeys);
         for ($i=0; $i<$n; $i++)
         {
             $this->data[$this->identityKeys[$i]] = $identityValues[$i];   
