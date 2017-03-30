@@ -2,6 +2,8 @@
 
 namespace DMM\Test;
 
+use DMM\Mapper;
+
 class PostMapper extends Mapper
 {
     protected $modelClass = '\Post';
