@@ -16,7 +16,7 @@ class VanillaModelTest extends \PHPUnit_Framework_TestCase
     
     public function setUp()
     {
-        $this->model = new BaseDomainModel('id');
+        $this->model = new BaseDomainModel(['id']);
         $this->model->__load($this->modelData);
     }
     
