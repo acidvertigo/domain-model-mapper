@@ -46,7 +46,7 @@ class Mapper
         $this->tableName = $tableName;
         if (!is_array($identityFields))
         {
-            $identityFields = array($identityFields);
+            $identityFields = [$identityFields];
         }
         $this->identityFields = $identityFields;
     }
