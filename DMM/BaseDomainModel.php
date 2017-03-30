@@ -150,7 +150,10 @@ class BaseDomainModel
         $methodName = "__set$fieldName";
         if (method_exists($this, $methodName))
         {
-            call_user_func(array($this, $methodName), $value);
+            $callback = function($this) use (&$methodName, &$value) {
+                 return $this->$methodName($value);
+            };
+            return $callback($this);
         } else
         {
             $this->data[$fieldName] = $value;
