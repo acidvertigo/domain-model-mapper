@@ -12,16 +12,16 @@ class ModelCollection extends \ArrayObject
      */
 	protected $modelClassName;
 	
-     /**
+    /**
      * @param string $modelClass
      */
     public function __construct($modelClass='\DMM\BaseDomainModel')
     {
     	if (class_exists($modelClass))
-	{ 
+	    { 
     		$this->modelClassName = $modelClass;
     	} else
-	{
+	    {
     		throw new \InvalidArgumentException("'$modelClass' is not a valid class name");	
     	}
     }
@@ -104,7 +104,7 @@ class ModelCollection extends \ArrayObject
 	    return $array;
     }
     
-     /**
+    /**
      * Same as pluck only for setting properties 
      * @param string $field
      * @param mixed $value
