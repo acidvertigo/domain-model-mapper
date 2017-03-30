@@ -1,6 +1,6 @@
 <?php
 
-class \Post extends \DMM\BaseDomainModel
+class Post extends \DMM\BaseDomainModel
 {
     public function __construct()
     {
