@@ -38,7 +38,7 @@ class PostMapper extends Mapper
     }
 }
 
-class AnotherPostMapper extends PostMapper
+class AnotherPostMapper extends \PostMapper
 {
     protected $modelCollectionClass = '\PostCollection';
 }
