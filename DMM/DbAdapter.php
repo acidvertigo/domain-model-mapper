@@ -9,7 +9,7 @@ namespace DMM;
 class DbAdapter
 {
     /**
-     * @var PDO
+     * @var \PDO
      */
     private $pdo;
 
@@ -35,7 +35,7 @@ class DbAdapter
      * @param array $bindings
      * @return PDOStatement
      */
-    protected function runQuery($sql, $bindings=array())
+    protected function runQuery($sql, $bindings = [])
     {
         // Ensure bindings are in an array
         if (!is_array($bindings))
@@ -106,10 +106,10 @@ class DbAdapter
      * @param array $bindings Parameter values to bind into query
      * @return array
      */
-    public function fetchColumn($sql, $bindings=array())
+    public function fetchColumn($sql, $bindings = [])
     {
         $statement = $this->runQuery($sql, $bindings);
-        $columnData = array();
+        $columnData = [];
         while (false !== ($value = $statement->fetchColumn()))
         {
             $columnData[] = $value;
@@ -135,11 +135,11 @@ class DbAdapter
      * @param array $bindings A Hash of field name to value
      * @return PDOStatement
      */
-    public function insert($tableName, $bindings)
+    public function insert($tableName, array $bindings)
     {
         // Extract fields and values from bindings
-        $fields = array();
-        $values = array();
+        $fields = [];
+        $values = [];
         foreach ($bindings as $field => $value)
         {
             $fields[] = $this->quoteIdentifier($field);
@@ -170,7 +170,7 @@ class DbAdapter
      * @param array $whereBindings
      * @return int The number of rows affected
      */
-    public function update($tableName, $updateBindings, $whereCondition='', $whereBindings=array())
+    public function update($tableName, $updateBindings, $whereCondition='', $whereBindings = [])
     {
         // Determine field assignments
         $assignments = [];
@@ -202,10 +202,10 @@ class DbAdapter
      * @param string $whereCondition
      * @return int The number of rows deleted
      */
-    public function delete($tableName, $whereCondition=null, $whereBindings=array())
+    public function delete($tableName, $whereCondition = null, $whereBindings = [])
     {
         $sql = sprintf("DELETE FROM %s ", $this->quoteIdentifier($tableName));
-        $bindings = array(); 
+        $bindings = []; 
         if ($whereCondition)
         {
             $sql .= "WHERE $whereCondition";
@@ -275,7 +275,7 @@ class DbAdapter
      * @param array $bindings
      * @return PDOStatement
      */
-    public function execute($sql, array $bindings=array())
+    public function execute($sql, array $bindings = [])
     {
         return $this->runQuery($sql, $bindings);
     }
