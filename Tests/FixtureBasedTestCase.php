@@ -14,7 +14,7 @@ class FixtureBasedTestCase extends \PHPUnit_Extensions_Database_TestCase
 
     public function __construct()
     {
-        $dsn = sprintf("mysql:host=%s;dbname=%s", $this->dbName, $this->host);
+        $dsn = sprintf("mysql:dbname=%s;host=%s", $this->dbName, $this->host);
         $this->pdo = new \PDO($dsn, $this->username, $this->password);
     }
 
