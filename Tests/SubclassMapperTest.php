@@ -69,6 +69,6 @@ class SubclassMapperTest extends FixtureBasedTestCase
     {
         $mapper = new AnotherPostMapper($this->pdo);
         $models = $mapper->findByRating(3);
-        $this->assertInstanceOf('DMM\Test\Fixtures\PostCollection', $models);
+        $this->assertInstanceOf('\Generator', $models);
     }
 }
