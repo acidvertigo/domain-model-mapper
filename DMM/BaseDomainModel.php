@@ -35,10 +35,10 @@ class BaseDomainModel
     {
         if (!is_array($identityKeys))
         {
-            $this->identityKeys = [$identityKeys];
+            $this->identityKeys[] = $identityKeys;
         }
 
-        $this->identityKeys[] = $identityKeys;
+        $this->identityKeys = $identityKeys;
     }
     
     /**
