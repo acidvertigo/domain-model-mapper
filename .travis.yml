@@ -9,7 +9,7 @@ services:
 before_install:
   - mysql -u root -e 'CREATE DATABASE test;'
   - mysql -u root -e 'USE test;'
-  - mysql -u root -e 'CREATE TABLE post( 
+  - mysql -u root test 'CREATE TABLE post( 
                                          post_id int NOT NULL auto_increment, 
                                          title varchar(255), 
                                          date_created datetime DEFAULT NULL, 
