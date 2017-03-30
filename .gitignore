@@ -4,3 +4,4 @@
 *.swp
 /vendor
 /src
+boot.php
