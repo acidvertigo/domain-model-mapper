@@ -56,7 +56,7 @@ class SubclassMapperTest extends FixtureBasedTestCase
     public function testItemFindersReturnSpecifiedModelClass()
     {
         $model = $this->mapper->findById(1);
-        $this->assertInstanceOf('\Post', $model);
+        $this->assertInstanceOf('DMM\Test\Fixtures\Post', $model);
     }
 
     public function testCollectionFindersReturnCollectionObject()
@@ -69,6 +69,6 @@ class SubclassMapperTest extends FixtureBasedTestCase
     {
         $mapper = new AnotherPostMapper($this->pdo);
         $models = $mapper->findByRating(3);
-        $this->assertInstanceOf('\PostCollection', $models);
+        $this->assertInstanceOf('DMM\Test\Fixtures\PostCollection', $models);
     }
 }
