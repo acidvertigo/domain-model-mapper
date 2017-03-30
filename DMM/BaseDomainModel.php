@@ -33,7 +33,7 @@ class BaseDomainModel
      */
     public function __construct($identityKeys = [])
     {
-        if (!is_array($identityFields))
+        if (!is_array($identityKeys))
         {
             $identityKeys = [$identityKeys];
         }
