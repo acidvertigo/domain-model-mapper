@@ -29,7 +29,7 @@ class BaseDomainModel
     protected $data = [];
     
     /**
-     * @param array $identityKeys
+     * @param string|array $identityKeys
      */
     public function __construct($identityKeys = [])
     {

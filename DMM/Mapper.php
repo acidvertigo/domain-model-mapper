@@ -38,7 +38,7 @@ class Mapper
     /**
      * @param \PDO $pdo
      * @param string $tableName
-     * @param array $identityFields
+     * @param string|array $identityFields
      */
     public function __construct(\PDO $pdo, $tableName, $identityFields)
     {
