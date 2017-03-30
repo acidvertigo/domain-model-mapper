@@ -2,8 +2,6 @@
 
 namespace DMM;
 
-require_once __DIR__.'/../DMM/BaseDomainModel.php';
-
 class VanillaModelTest extends \PHPUnit_Framework_TestCase 
 {
     private $model;
