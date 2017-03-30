@@ -5,7 +5,7 @@ namespace DMM;
 class FixtureBasedTestCase extends \PHPUnit_Extensions_Database_TestCase
 {
     protected $dbName = 'test';
-    protected $host = 'localhost';
+    protected $host = '127.0.0.1';
     protected $username = 'travis';
     protected $password = '';
 
