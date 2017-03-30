@@ -25,17 +25,15 @@ class Mapper
     
     /**
      * Name of model class that this is the mapper for.
-     * 
      * @var string
      */
-    protected $modelClass = '\DMM\BaseDomainModel';
+    protected $modelClass = 'DMM\BaseDomainModel';
     
     /**
      * Name of collection class that this is the mapper for.
-     * 
      * @var string
      */
-    protected $modelCollectionClass = '\DMM\ModelCollection';
+    protected $modelCollectionClass = 'DMM\ModelCollection';
 
     /**
      * @param PDO $pdo
@@ -46,7 +44,8 @@ class Mapper
     {
         $this->db = new DbAdapter($pdo);
         $this->tableName = $tableName;
-        if (!is_array($identityFields)) {
+        if (!is_array($identityFields))
+        {
             $identityFields = array($identityFields);
         }
         $this->identityFields = $identityFields;
@@ -60,17 +59,19 @@ class Mapper
      */
     private function getIdentityCondition(array $identity)
     {
-        $conditions = array();
-        $bindings = array();
-        foreach ($identity as $key => $value) {
-            if (in_array($key, $this->identityFields)) {
+        $conditions = [];
+        $bindings = [];
+        foreach ($identity as $key => $value) 
+        {
+            if (in_array($key, $this->identityFields)) 
+            {
                 $placeholder = strtolower($key);
                 $conditions[] = sprintf("`%s` = :$placeholder", $key);
                 $bindings[$placeholder] = $value;
             }
         }
         $sql = implode(' AND ', $conditions);
-        return array($sql, $bindings);
+        return [$sql, $bindings];
     }
     
     /**
@@ -124,7 +125,8 @@ class Mapper
     protected function loadCollection(array $rows)
     {
         $collection = new $this->modelCollectionClass($this->modelClass);
-        foreach ($rows as $row) {
+        foreach ($rows as $row)
+        {
             // Note we check to see if the model was successfully loaded before
             // adding.  This allows mappers to subclass the loadItem method and do
             // return null to prevent the model being loaded.
@@ -184,9 +186,11 @@ class Mapper
         // We check to see if we can load this model to
         // determine if we insert or update
         $existingModel = $this->find($model->__identity(), clone $model);
-        if ($existingModel) {
+        if ($existingModel)
+        {
             $this->update($model);
-        } else {
+        } else
+        {
             $this->insert($model);
         }
         return $this;
