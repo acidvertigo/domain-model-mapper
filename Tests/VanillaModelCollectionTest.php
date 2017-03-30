@@ -64,7 +64,7 @@ class VanillaModelCollectionTest extends \PHPUnit_Framework_TestCase
     
     public function testContainsReturnsFalseForNewModel()
     {
-        $this->assertFalse($this->collection->contains(new BaseDomainModel('id')));
+        $this->assertFalse($this->collection->contains(new BaseDomainModel(['id'])));
     }
     
     public function testPluckReturnsArrayOfFieldValues()
