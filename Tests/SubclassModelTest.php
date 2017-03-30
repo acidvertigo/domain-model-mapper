@@ -1,7 +1,6 @@
 <?php
 
 namespace DMM;
-require_once __DIR__.'/../DMM/BaseDomainModel.php';
 
 class MyDomainModel extends BaseDomainModel
 {
