@@ -47,7 +47,7 @@ class ModelCollection extends \ArrayObject
     protected function checkType($value)
     {
         if (!is_a($value, $this->modelClassName))
-	{
+	    {
             throw new \InvalidArgumentException('Provided object is not an instance of '.$this->modelClassName);
         }
     }
@@ -97,7 +97,7 @@ class ModelCollection extends \ArrayObject
 	    foreach ($this as $model)
 	    {
 	        if (isset($model->{$property}))
-		{
+		    {
 	        	$array[] = $model->{$property};
 	        }
 	    }
