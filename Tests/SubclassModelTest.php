@@ -11,7 +11,7 @@ class MyDomainModel extends BaseDomainModel
     
     public function __construct()
     {
-        parent::__construct(['id']);
+        parent::__construct('id');
         $this->__setFieldNames(self::$fieldNames);
     }
     
