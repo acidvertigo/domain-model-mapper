@@ -1,5 +1,7 @@
-"autoload": {
+{
+    "autoload": {
     "psr-4": {
         "DMM\\": "DMM/"
     }
+}
 }
