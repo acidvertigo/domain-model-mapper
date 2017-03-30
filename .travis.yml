@@ -12,7 +12,7 @@ before_install:
                                          title varchar(255),
                                          contents varchar(255), 
                                          date_created datetime DEFAULT NULL, 
-                                         rating int DEFAULT '0'  NOT NULL, 
+                                         rating int DEFAULT '0'  NULL, 
                                          PRIMARY KEY (`post_id`)
                                          ) 
                                          CHARACTER SET utf8 COLLATE utf8_unicode_ci;'
