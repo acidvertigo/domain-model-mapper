@@ -2,6 +2,8 @@
 
 namespace DMM\Test;
 
+use DMM\ModelCollection;
+
 class VanillaModelCollectionTest extends \PHPUnit_Framework_TestCase 
 {
     private $firstModel;
