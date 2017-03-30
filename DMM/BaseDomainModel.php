@@ -20,7 +20,7 @@ class BaseDomainModel
      * loading data using the __load command
      * @var array
      */
-    private $fieldNames;
+    private $fieldNames = [];
     
     /**
      * The field names and values for this object
@@ -29,7 +29,7 @@ class BaseDomainModel
     protected $data = [];
     
     /**
-     * @param string|array $identityKeys
+     * @param array $identityKeys
      */
     public function __construct(array $identityKeys)
     {
@@ -55,17 +55,17 @@ class BaseDomainModel
      */
     public function __load(array $data)
     {
-        if ($this->fieldNames)
+        if (!empty($this->fieldNames))
         {
             foreach ($this->fieldNames as $field)
             {
-                if (array_key_exists($field, $data))
-                {
-                    $this->data[$field] = $data[$field];
-                } else
+                if (!array_key_exists($field, $data))
                 {
                     throw new MissingDataException("Supplied row must contain a $field field");
+                    
                 }
+                
+                $this->data[$field] = $data[$field];
             }
         } else
         {
