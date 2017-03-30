@@ -6,7 +6,7 @@ use DMM\Mapper;
 
 class PostMapper extends Mapper
 {
-    protected $modelClass = '\Post';
+    protected $modelClass = '\\Post';
 
     public function __construct(\PDO $pdo)
     {
