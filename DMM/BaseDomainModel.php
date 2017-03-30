@@ -2,8 +2,6 @@
 
 namespace DMM;
 
-require_once __DIR__.'/MissingDataException.php';
-
 /**
  * The top-level domain model object.
  * 
