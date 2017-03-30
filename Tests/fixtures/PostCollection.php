@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__.'/../../DMM/BaseDomainModel.php';
+namespace DMM\Test\Fixtures;
 
 class PostCollection extends \DMM\ModelCollection
 {
