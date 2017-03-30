@@ -3,7 +3,6 @@
 namespace DMM\Test;
 
 use DMM\Mapper;
-use \PostMapper;
 
 class PostMapper extends Mapper
 {
