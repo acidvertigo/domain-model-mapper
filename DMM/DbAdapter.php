@@ -4,7 +4,6 @@ namespace DMM;
 
 /**
  * A simple database adapter, wrapping a PDO object
- *
  * @package DMM
  */
 class DbAdapter
@@ -39,23 +38,28 @@ class DbAdapter
     protected function runQuery($sql, $bindings=array())
     {
         // Ensure bindings are in an array
-        if (!is_array($bindings)) {
-            $bindings = array($bindings);
+        if (!is_array($bindings))
+        {
+            $bindings = [$bindings];
         }
         
         $this->lastPdoStatement = null;
-        if (count($bindings) > 0) {
+        if (count($bindings) > 0)
+        {
             // Use a prepared statement if bindings are set
             $this->lastPdoStatement = $this->pdo->prepare($sql);
             $executedOk = $this->lastPdoStatement->execute($bindings);
-            if (false === $executedOk) {
-                throw new PDOException;
+            if (false === $executedOk)
+            {
+                throw new \PDOException;
             }
-        } else {
+        } else
+        {
             // Execute a normal query
             $this->lastPdoStatement = $this->pdo->query($sql); 
-            if (false === $this->lastPdoStatement) {
-                throw new PDOException;
+            if (false === $this->lastPdoStatement)
+            {
+                throw new \PDOException;
             }
         }
         return $this->lastPdoStatement;
@@ -63,7 +67,6 @@ class DbAdapter
 
     /**
      * Quotes a table or fieldname
-     *
      * @param string $identifier
      * @return string
      */
@@ -72,13 +75,8 @@ class DbAdapter
         return sprintf("`%s`", $identifier);
     }
 
-    // =======
-    // READING
-    // =======
-
     /**
      * Returns a single field value
-     *
      * @param string $sql The query to run
      * @param array $bindings Parameter values to bind into query
      * @return string
@@ -91,7 +89,6 @@ class DbAdapter
 
     /**
      * Returns a row
-     *
      * @param string $sql The query to run
      * @param array $bindings Parameter values to bind into query
      * @return array
@@ -105,7 +102,6 @@ class DbAdapter
 
     /**
      * Returns a column of values as an array
-     *
      * @param string $sql The query to run
      * @param array $bindings Parameter values to bind into query
      * @return array
@@ -114,7 +110,8 @@ class DbAdapter
     {
         $statement = $this->runQuery($sql, $bindings);
         $columnData = array();
-        while (false !== ($value = $statement->fetchColumn())) {
+        while (false !== ($value = $statement->fetchColumn()))
+        {
             $columnData[] = $value;
         }
         return $columnData;
@@ -122,7 +119,6 @@ class DbAdapter
 
     /**
      * Returns an array of rows
-     *
      * @param string $sql The query to run
      * @param array $bindings Parameter values to bind into query
      * @return array
@@ -133,13 +129,8 @@ class DbAdapter
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    // =======
-    // WRITING
-    // =======
-
     /**
      * Inserts data into a table
-     *
      * @param string $tableName
      * @param array $bindings A Hash of field name to value
      * @return PDOStatement
@@ -149,7 +140,8 @@ class DbAdapter
         // Extract fields and values from bindings
         $fields = array();
         $values = array();
-        foreach ($bindings as $field => $value) {
+        foreach ($bindings as $field => $value)
+        {
             $fields[] = $this->quoteIdentifier($field);
             $values[] = '?';
         }
@@ -181,9 +173,10 @@ class DbAdapter
     public function update($tableName, $updateBindings, $whereCondition='', $whereBindings=array())
     {
         // Determine field assignments
-        $assignments = array();
-        $bindings = array();
-        foreach ($updateBindings as $field => $value) {
+        $assignments = [];
+        $bindings = [];
+        foreach ($updateBindings as $field => $value)
+        {
             $placeHolder = strtolower($field);
             $assignments[] = sprintf("%s = %s", $this->quoteIdentifier($field), ":$placeHolder");
             $bindings[$placeHolder] = $value;
@@ -191,7 +184,8 @@ class DbAdapter
         // Construct SQL
         $escapedTableName = $this->quoteIdentifier($tableName);
         $sql = sprintf("UPDATE %s SET %s", $escapedTableName, implode(', ', $assignments));
-        if ($whereCondition) {
+        if ($whereCondition)
+        {
             $sql .= " WHERE $whereCondition";
             $bindings = array_merge($bindings, $whereBindings);
         }
@@ -212,7 +206,8 @@ class DbAdapter
     {
         $sql = sprintf("DELETE FROM %s ", $this->quoteIdentifier($tableName));
         $bindings = array(); 
-        if ($whereCondition) {
+        if ($whereCondition)
+        {
             $sql .= "WHERE $whereCondition";
             $bindings = $whereBindings;
         }
@@ -254,7 +249,8 @@ class DbAdapter
      */
     public function getLastRowCount()
     {
-        if (!$this->lastPdoStatement) {
+        if (!$this->lastPdoStatement)
+        {
             return null;
         }
         return $this->lastPdoStatement->rowCount();
@@ -265,7 +261,8 @@ class DbAdapter
      */
     public function getLastColumnCount()
     {
-        if (!$this->lastPdoStatement) {
+        if (!$this->lastPdoStatement)
+        {
             return null;
         }
         return $this->lastPdoStatement->columnCount();
