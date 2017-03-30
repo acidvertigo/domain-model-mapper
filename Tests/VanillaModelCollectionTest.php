@@ -3,6 +3,7 @@
 namespace DMM\Test;
 
 use DMM\ModelCollection;
+use DMM\BaseDomainModel;
 
 class VanillaModelCollectionTest extends \PHPUnit_Framework_TestCase 
 {
