@@ -1,6 +1,6 @@
 <?php
 
-namespace DMM;
+namespace DMM\Test;
 
 class PostMapper extends Mapper
 {
