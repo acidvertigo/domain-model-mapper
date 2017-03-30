@@ -11,7 +11,6 @@ class BaseDomainModel
 {
     /**
      * Identifying fieldnames for this models
-     *
      * @var array
      */
     private $identityKeys;
@@ -19,22 +18,20 @@ class BaseDomainModel
     /**
      * Optional array of fieldnames to use as a filter when
      * loading data using the __load command
-     * 
      * @var array
      */
     private $fieldNames;
     
     /**
      * The field names and values for this object
-     *
      * @var array
      */
-    protected $data = array();
+    protected $data = [];
     
     /**
      * @param string|array $identityKeys
      */
-    public function __construct($identityKeys=array())
+    public function __construct($identityKeys = [])
     {
         if (!is_array($identityKeys)) {
             $identityKeys = array($identityKeys);
@@ -54,24 +51,27 @@ class BaseDomainModel
     
     /**
      * Create a clean domain object from a database result set.
-     * 
      * Note that the fieldNames property can be used to filter out 
      * unwanted values from a database row.
-     *
      * @param array $data
      * @return BaseDomainModel
      */
     public function __load(array $data)
     {
-        if ($this->fieldNames) {
-            foreach ($this->fieldNames as $field) {
-                if (array_key_exists($field, $data)) {
+        if ($this->fieldNames)
+        {
+            foreach ($this->fieldNames as $field)
+            {
+                if (array_key_exists($field, $data))
+                {
                     $this->data[$field] = $data[$field];
-                } else {
+                } else
+                {
                     throw new MissingDataException("Supplied row must contain a $field field");
                 }
             }
-        } else {
+        } else
+        {
             $this->data = $data;
         }
         return $this;
@@ -85,8 +85,10 @@ class BaseDomainModel
     public function __identity()
     {
         $identity = array();
-        foreach ($this->identityKeys as $key) {
-            if (array_key_exists($key, $this->data) && !empty($this->data[$key])) {
+        foreach ($this->identityKeys as $key)
+        {
+            if (array_key_exists($key, $this->data) && !empty($this->data[$key]))
+            {
                 $identity[$key] = $this->data[$key];
             }
         }
@@ -95,7 +97,6 @@ class BaseDomainModel
     
     /**
      * Returns the fields of this object as an array
-     *
      * @return array
      */
     public function __toArray()
@@ -105,18 +106,13 @@ class BaseDomainModel
     
     /**
      * Function for validating a model's contents before it is saved
-     * 
      * @return array An array of error messages 
      */
     public function getValidationErrors()
     {
-        return array();
+        return [];
     }
-    
-    // ==================
-    // MAGIC FIELD ACCESS
-    // ==================
-    
+ 
     /**
      * Magic getter method that looks for field within data array or for 
      * a specific getter method with name __get$FieldName.
@@ -127,12 +123,15 @@ class BaseDomainModel
     public function __get($fieldName)
     {
         $methodName = "__get$fieldName";
-        if (method_exists($this, $methodName)) {
+        if (method_exists($this, $methodName))
+        {
             return call_user_func(array($this, $methodName));
         }
-        if (array_key_exists($fieldName, $this->data)) {
+        if (array_key_exists($fieldName, $this->data))
+        {
             return $this->data[$fieldName];
-        } else {
+        } else
+        {
             return null;
         }
     }
@@ -151,9 +150,11 @@ class BaseDomainModel
     public function __set($fieldName, $value)
     {
         $methodName = "__set$fieldName";
-        if (method_exists($this, $methodName)) {
+        if (method_exists($this, $methodName))
+        {
             call_user_func(array($this, $methodName), $value);
-        } else {
+        } else
+        {
             $this->data[$fieldName] = $value;
         }
     }
@@ -164,22 +165,25 @@ class BaseDomainModel
      */
     public function __setIdentity($identityValues)
     {
-        if (!is_array($identityValues)) {
-            $identityValues = array($identityValues);
+        if (!is_array($identityValues))
+        {
+            $identityValues = [$identityValues];
         }
         
-        if (count($this->identityKeys) !== count($identityValues)) {
+        if (count($this->identityKeys) !== count($identityValues))
+        {
             throw new Exception("Invalid number of identity values");
         }
         
-        for ($i=0; $i<count($this->identityKeys); $i++) {
+        $n = $i<count($this->identityKeys);
+        for ($i=0; $i<$n; $i++)
+        {
             $this->data[$this->identityKeys[$i]] = $identityValues[$i];   
         }
     }
 
     /**
      * Magic function to check if field exists
-     *
      * @param string $fieldName The Field name to check
      * @return boolean True if it is set, else false
      */
@@ -190,9 +194,7 @@ class BaseDomainModel
 
     /**
      * Magic function to unsets the value of a field
-     *
      * Currently sets the value of $fileName to null
-     *
      * @param string $fieldName
      * @return void
      */
