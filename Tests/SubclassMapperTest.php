@@ -6,7 +6,7 @@ use DMM\Mapper;
 
 class PostMapper extends Mapper
 {
-    protected $modelClass = '\\Post';
+    protected $modelClass = 'DMM\Test\Fixtures\Post';
 
     public function __construct(\PDO $pdo)
     {
@@ -40,7 +40,7 @@ class PostMapper extends Mapper
 
 class AnotherPostMapper extends PostMapper
 {
-    protected $modelCollectionClass = '\PostCollection';
+    protected $modelCollectionClass = 'DMM\Test\Fixtures\PostCollection';
 }
 
 class SubclassMapperTest extends FixtureBasedTestCase
