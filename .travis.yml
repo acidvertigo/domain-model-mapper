@@ -9,7 +9,8 @@ before_install:
   - mysql -e 'USE test;'
   - mysql -e 'CREATE TABLE test.post ( 
                                          post_id int NOT NULL auto_increment, 
-                                         title varchar(255), 
+                                         title varchar(255),
+                                         contents varchar(255), 
                                          date_created datetime DEFAULT NULL, 
                                          rating int DEFAULT '0'  NOT NULL, 
                                          PRIMARY KEY (`post_id`)
