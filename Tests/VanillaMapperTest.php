@@ -29,7 +29,7 @@ class VanillaMapperTest extends FixtureBasedTestCase
 
     public function testInsertNewModel()
     {
-        $model = new \Post; 
+        $model = new Post; 
         $model->title = "A new post";
         $model->contents = "Here is some content";
         $model->rating = 4;
