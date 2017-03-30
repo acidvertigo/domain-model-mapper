@@ -17,13 +17,13 @@ class VanillaMapperTest extends FixtureBasedTestCase
 
     public function testFindReturnsModel()
     {
-        $model = $this->mapper->find(array('post_id' => 1), new Post);
+        $model = $this->mapper->find(['post_id' => 1], new Post);
         $this->assertSame('My First Post', $model->title);
     }
 
     public function testFindReturnsNullWhenIdentityMatch()
     {
-        $model = $this->mapper->find(array('post_id' => 0), new Post);
+        $model = $this->mapper->find(['post_id' => 0], new Post);
         $this->assertNull($model);
     }
 
@@ -41,21 +41,21 @@ class VanillaMapperTest extends FixtureBasedTestCase
 
     public function testUpdateModel()
     {
-        $model = $this->mapper->find(array('post_id' => 1), new Post);
+        $model = $this->mapper->find(['post_id' => 1], new Post);
         $model->title = "Updated title";
         $this->mapper->update($model);
 
-        $freshModel = $this->mapper->find(array('post_id' => 1), new Post);
+        $freshModel = $this->mapper->find(['post_id' => 1], new Post);
         $this->assertSame("Updated title", $freshModel->title);
     }
 
     public function testSaveModelUpdatesCorrectly()
     {
-        $model = $this->mapper->find(array('post_id' => 1), new Post);
+        $model = $this->mapper->find(['post_id' => 1], new Post);
         $model->title = "Updated title";
         $this->mapper->save($model);
 
-        $freshModel = $this->mapper->find(array('post_id' => 1), new Post);
+        $freshModel = $this->mapper->find(['post_id' => 1], new Post);
         $this->assertSame("Updated title", $freshModel->title);
     }
 
@@ -72,16 +72,16 @@ class VanillaMapperTest extends FixtureBasedTestCase
 
         $this->mapper->save($model);
 
-        $freshModel = $this->mapper->find(array('post_id' => 10), new Post);
+        $freshModel = $this->mapper->find(['post_id' => 10], new Post);
         $this->assertSame("A new post", $freshModel->title);
     }
 
     public function testModelsCanBeDeleted()
     {
-        $model = $this->mapper->find(array('post_id' => 1), new Post); 
+        $model = $this->mapper->find(['post_id' => 1], new Post); 
         $this->mapper->delete($model);
 
-        $freshModel = $this->mapper->find(array('post_id' => 1), new Post);
+        $freshModel = $this->mapper->find(['post_id' => 1], new Post);
         $this->assertNull($freshModel);
     }
 
