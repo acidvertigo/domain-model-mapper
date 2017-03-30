@@ -13,7 +13,7 @@ class BaseDomainModel
      * Identifying fieldnames for this models
      * @var array
      */
-    private $identityKeys;
+    private $identityKeys = [];
     
     /**
      * Optional array of fieldnames to use as a filter when
@@ -38,7 +38,7 @@ class BaseDomainModel
             $this->identityKeys = [$identityKeys];
         }
 
-        $this->identityKeys = $identityKeys;
+        $this->identityKeys[] = $identityKeys;
     }
     
     /**
