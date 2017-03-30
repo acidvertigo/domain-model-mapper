@@ -2,6 +2,8 @@
 
 namespace DMM\Test;
 
+use DMM\Mapper;
+
 class VanillaMapperTest extends FixtureBasedTestCase
 {
     protected $mapper;
