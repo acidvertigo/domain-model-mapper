@@ -1,7 +1,6 @@
 <?php
 
 namespace DMM;
-require_once __DIR__.'/../DMM/ModelCollection.php';
 
 class VanillaModelCollectionTest extends \PHPUnit_Framework_TestCase 
 {
