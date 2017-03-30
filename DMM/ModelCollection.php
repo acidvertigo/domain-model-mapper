@@ -60,9 +60,9 @@ class ModelCollection extends \ArrayObject
     {
         $collectionCopy = clone $this;
         foreach ($collectionCopy as $index => $copiedModel)
-	{
-            if ($model === $copiedModel)
 	    {
+            if ($model === $copiedModel)
+	        {
                 unset($this[$index]);
             }
        	}   
@@ -76,9 +76,9 @@ class ModelCollection extends \ArrayObject
     public function contains(BaseDomainModel $model)
     {
         foreach ($this as $collectionModel)
-	{
-            if ($collectionModel === $model)
 	    {
+            if ($collectionModel === $model)
+	        {
                 return true;
             } 
         }
