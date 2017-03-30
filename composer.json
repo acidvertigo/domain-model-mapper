@@ -5,7 +5,7 @@
     },
     "autoload": {
     "psr-4": {
-        "DMM\\Test\\Fixtures\\": "Tests/Fixtures",
+        "DMM\\Test\\Fixtures\\": "Tests/fixtures",
         "DMM\\": "DMM/",
         "DMM\\Test\\": "Tests/"
     }
