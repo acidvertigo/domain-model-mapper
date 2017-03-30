@@ -3,6 +3,7 @@
 namespace DMM\Test;
 
 use DMM\Mapper;
+use DMM\Test\Fixtures\Post;
 
 class VanillaMapperTest extends FixtureBasedTestCase
 {
@@ -16,13 +17,13 @@ class VanillaMapperTest extends FixtureBasedTestCase
 
     public function testFindReturnsModel()
     {
-        $model = $this->mapper->find(array('post_id' => 1), new \Post);
+        $model = $this->mapper->find(array('post_id' => 1), new Post);
         $this->assertSame('My First Post', $model->title);
     }
 
     public function testFindReturnsNullWhenIdentityMatch()
     {
-        $model = $this->mapper->find(array('post_id' => 0), new \Post);
+        $model = $this->mapper->find(array('post_id' => 0), new Post);
         $this->assertNull($model);
     }
 
@@ -40,21 +41,21 @@ class VanillaMapperTest extends FixtureBasedTestCase
 
     public function testUpdateModel()
     {
-        $model = $this->mapper->find(array('post_id' => 1), new \Post);
+        $model = $this->mapper->find(array('post_id' => 1), new Post);
         $model->title = "Updated title";
         $this->mapper->update($model);
 
-        $freshModel = $this->mapper->find(array('post_id' => 1), new \Post);
+        $freshModel = $this->mapper->find(array('post_id' => 1), new Post);
         $this->assertSame("Updated title", $freshModel->title);
     }
 
     public function testSaveModelUpdatesCorrectly()
     {
-        $model = $this->mapper->find(array('post_id' => 1), new \Post);
+        $model = $this->mapper->find(array('post_id' => 1), new Post);
         $model->title = "Updated title";
         $this->mapper->save($model);
 
-        $freshModel = $this->mapper->find(array('post_id' => 1), new \Post);
+        $freshModel = $this->mapper->find(array('post_id' => 1), new Post);
         $this->assertSame("Updated title", $freshModel->title);
     }
 
@@ -62,7 +63,7 @@ class VanillaMapperTest extends FixtureBasedTestCase
     {
         // The id 10 does not exist in the fixtures and so this 
         // should insert
-        $model = new \Post; 
+        $model = new Post; 
         $model->post_id = 10;
         $model->title = "A new post";
         $model->contents = "Here is some content";
@@ -71,22 +72,22 @@ class VanillaMapperTest extends FixtureBasedTestCase
 
         $this->mapper->save($model);
 
-        $freshModel = $this->mapper->find(array('post_id' => 10), new \Post);
+        $freshModel = $this->mapper->find(array('post_id' => 10), new Post);
         $this->assertSame("A new post", $freshModel->title);
     }
 
     public function testModelsCanBeDeleted()
     {
-        $model = $this->mapper->find(array('post_id' => 1), new \Post); 
+        $model = $this->mapper->find(array('post_id' => 1), new Post); 
         $this->mapper->delete($model);
 
-        $freshModel = $this->mapper->find(array('post_id' => 1), new \Post);
+        $freshModel = $this->mapper->find(array('post_id' => 1), new Post);
         $this->assertNull($freshModel);
     }
 
     public function testGetValidationErrorsCallsModel()
     {
-        $model = $this->createMock('\Post', array('getValidationErrors'));
+        $model = $this->createMock('DMM\Test\Fixtures\Post', array('getValidationErrors'));
         $model->expects($this->once())
               ->method('getValidationErrors');
         $this->mapper->getValidationErrors($model);
