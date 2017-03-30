@@ -2,10 +2,6 @@
 
 namespace DMM;
 
-require_once __DIR__.'/FixtureBasedTestCase.php';
-require_once __DIR__.'/../DMM/Mapper.php';
-require_once __DIR__.'/fixtures/Post.php';
-
 class VanillaMapperTest extends FixtureBasedTestCase
 {
     protected $mapper;
@@ -88,7 +84,7 @@ class VanillaMapperTest extends FixtureBasedTestCase
 
     public function testGetValidationErrorsCallsModel()
     {
-        $model = $this->getMock('\Post', array('getValidationErrors'));
+        $model = $this->createMock('\Post', array('getValidationErrors'));
         $model->expects($this->once())
               ->method('getValidationErrors');
         $this->mapper->getValidationErrors($model);
