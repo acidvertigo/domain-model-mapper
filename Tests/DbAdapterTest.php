@@ -2,9 +2,6 @@
 
 namespace DMM;
 
-require_once __DIR__.'/FixtureBasedTestCase.php';
-require_once __DIR__.'/../DMM/DbAdapter.php';
-
 class DbAdapterTest extends FixtureBasedTestCase
 {
     public function setUp()
