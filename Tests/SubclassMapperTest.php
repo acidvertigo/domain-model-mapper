@@ -62,7 +62,7 @@ class SubclassMapperTest extends FixtureBasedTestCase
     public function testCollectionFindersReturnCollectionObject()
     {
         $models = $this->mapper->findByRating(3);
-        $this->assertInstanceOf('\DMM\ModelCollection', $models);
+        $this->assertInstanceOf('\Generator', $models);
     }
     
     public function testCollectionFindersReturnSpecifiedCollectionObject()
