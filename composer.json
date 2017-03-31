@@ -8,7 +8,7 @@
         "DMM\\Test\\Fixtures\\": "Tests/fixtures",
         "DMM\\": "DMM/",
         "DMM\\Test\\": "Tests/",
-        "APP\\": "src/"
+        "App\\Model\\": "src/Model"
     }
 }
 }

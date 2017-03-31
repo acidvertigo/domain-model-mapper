@@ -66,7 +66,6 @@ class BaseDomainModel
                 if (!array_key_exists($field, $data))
                 {
                     throw new MissingDataException("Supplied row must contain a $field field");
-                    
                 }
                 
                 $this->data[$field] = $data[$field];
@@ -126,15 +125,12 @@ class BaseDomainModel
         $methodName = "__get$fieldName";
         if (method_exists($this, $methodName))
         {
-            $callback = function($this) use (&$methodName) {
-                return $this->$methodName();
-            };
-            return $callback($this);
+            return $this->$methodName();
         } else if (array_key_exists($fieldName, $this->data))
         {
             return $this->data[$fieldName];
         }
-  
+
         return null;
     }
     
@@ -154,10 +150,7 @@ class BaseDomainModel
         $methodName = "__set$fieldName";
         if (method_exists($this, $methodName))
         {
-            $callback = function($this) use (&$methodName, &$value) {
-                 return $this->$methodName($value);
-            };
-            return $callback($this);
+            return $this->$methodName($value);
         } else
         {
             $this->data[$fieldName] = $value;
