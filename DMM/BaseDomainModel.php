@@ -63,12 +63,10 @@ class BaseDomainModel
         {
             foreach ($this->fieldNames as $field)
             {
-                if (!array_key_exists($field, $data))
+                if (array_key_exists($field, $data))
                 {
-                    throw new MissingDataException("Supplied row must contain a $field field");
+                    $this->data[$field] = $data[$field];
                 }
-                
-                $this->data[$field] = $data[$field];
             }
         } else
         {
