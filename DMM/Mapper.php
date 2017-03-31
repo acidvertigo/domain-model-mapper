@@ -34,6 +34,8 @@ class Mapper
      * @var string
      */
     protected $modelCollectionClass = 'DMM\ModelCollection';
+    
+    protected $relation = [];
 
     /**
      * @param \PDO $pdo
@@ -49,7 +51,6 @@ class Mapper
             $identityFields = [$identityFields];
         }
         $this->identityFields = $identityFields;
-        $this->loadRelation();
     }
     
     /**
@@ -119,9 +120,19 @@ class Mapper
         return $item;
     }
     
-    protected function loadRelation()
+    protected function hasMany($key, $class)
     {
-        return new $this->hasMany;
+        $this->relation[$key] = $class;
+    }
+    
+    protected function with($name)
+    {
+        if (array_key_exists($name, $this->relation))
+        {
+            return $this->relation[$name];
+        }
+
+        return null;
     }
 
     /**
