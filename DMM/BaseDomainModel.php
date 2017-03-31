@@ -129,7 +129,7 @@ class BaseDomainModel
         } else if (array_key_exists($fieldName, $this->data))
         {
             return $this->data[$fieldName];
-        } else if (property_exists($this,$name))
+        } else if (property_exists($this,$fieldName))
         {
             return $this->$fieldName;
         } else
@@ -175,7 +175,7 @@ class BaseDomainModel
      * @return void
      */
     public function __setIdentity($identityValues)
-    {
+    { 
         if (!is_array($identityValues))
         {
             $identityValues = [$identityValues];
