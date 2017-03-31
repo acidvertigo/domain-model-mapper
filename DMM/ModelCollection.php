@@ -15,7 +15,7 @@ class ModelCollection extends \ArrayObject
     /**
      * @param string $modelClass
      */
-    public function __construct($modelClass='\DMM\BaseDomainModel')
+    public function __construct($modelClass = 'DMM\BaseDomainModel')
     {
     	if (class_exists($modelClass))
 	    { 
