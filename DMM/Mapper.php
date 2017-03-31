@@ -49,6 +49,7 @@ class Mapper
             $identityFields = [$identityFields];
         }
         $this->identityFields = $identityFields;
+        $this->loadRelation();
     }
     
     /**
@@ -110,12 +111,17 @@ class Mapper
      * @param array $row
      * @return BaseDomainModel
      */
-    protected function loadItem($row=null)
+    protected function loadItem($row = null)
     {
         if (!$row) return null;
         $item = new $this->modelClass;
         $item->__load($row);
         return $item;
+    }
+    
+    protected function loadRelation()
+    {
+        return new $this->hasMany;
     }
 
     /**
@@ -142,7 +148,7 @@ class Mapper
      * @param BaseDomainModel
      * @return BaseDomainModel
      */
-    public function find($identity, BaseDomainModel $model)
+    public function find(array $identity, BaseDomainModel $model)
     {
         $sql = "SELECT * FROM `%s` WHERE %s";
         list($whereCondition, $bindings) = $this->getIdentityCondition($identity);

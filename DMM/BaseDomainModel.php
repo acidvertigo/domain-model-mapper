@@ -129,6 +129,19 @@ class BaseDomainModel
         } else if (array_key_exists($fieldName, $this->data))
         {
             return $this->data[$fieldName];
+        } else if (property_exists($this,$name))
+        {
+            return $this->$fieldName;
+        } else
+        {
+            // EXPERIMENTAL: 
+            // if requested field is not a method or a property 
+            // try to load a class with relationship to model
+            // and add is property and methods accessible to main
+            // parent model.
+            $class = new $fieldName;
+            $callback = \Closure::bind($callback, null, $class);
+            return $callback($class);
         }
 
         return null;
