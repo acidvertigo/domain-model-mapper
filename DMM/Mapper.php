@@ -35,6 +35,10 @@ class Mapper
      */
     protected $modelCollectionClass = 'DMM\ModelCollection';
     
+    /**
+     * Store the entities in relation with root entity
+     * @var array
+     */
     protected $relation = [];
 
     /**
@@ -120,11 +124,22 @@ class Mapper
         return $item;
     }
     
+    /**
+     * Has many relation
+     * @param string $key
+     * @param string $class
+     * @return array|null
+     */
     protected function hasMany($key, $class)
     {
         $this->relation[$key] = $class;
     }
     
+    /**
+     * Returns the class in relation with root entity
+     * @param string $name
+     * @return null|BaseDomainModel
+     */
     protected function with($name)
     {
         if (array_key_exists($name, $this->relation))
