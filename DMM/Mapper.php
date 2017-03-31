@@ -144,7 +144,7 @@ class Mapper
     {
         if (array_key_exists($name, $this->relation))
         {
-            return $this->relation[$name];
+            return new $this->relation[$name];
         }
 
         return null;
